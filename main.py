@@ -1,6 +1,6 @@
 """
 Authors:
-Omer Keidar 307887984 & Eyal Ginosar 307830901
+Eyal Ginosar & Omer Keidar
 
 Machine Learning and Data Mining Class Final Project
 """
