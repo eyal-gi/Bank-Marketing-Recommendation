@@ -220,25 +220,12 @@ def drop_features(df):
     # df = df.drop(['poutcome'], axis=1)  # drop poutcome because there are too many missing values
     df = df.drop(['default'], axis=1)  # drop default because it has low correlation with Y
     df = df.drop(['day'], axis=1)  # drop day because it has low correlation with Y
-
-    # CAT_VARIABLES.remove('poutcome')
-    # CAT_VARIABLES.remove('default')
-    # CAT_VARIABLES.remove('day')
-
-
-
-
     # df = df.drop(['marital'], axis=1)  # drop day because it has low correlation with Y
     # df = df.drop(['education'], axis=1)  # drop day because it has low correlation with Y
     df = df.drop(['balance'], axis=1)  # drop day because it has low correlation with Y
     # df = df.drop(['loan'], axis=1)  # drop day because it has low correlation with Y
     df = df.drop(['pdays'], axis=1)  # drop day because it has low correlation with Y
     # df = df.drop(['campaign'], axis=1)  # drop day because it has low correlation with Y
-    # CAT_VARIABLES.remove('marital')
-    # CAT_VARIABLES.remove('education')
-    # CAT_VARIABLES.remove('balance')
-    # CAT_VARIABLES.remove('loan')
-    # print(CAT_VARIABLES)
     return df
 
 
@@ -413,54 +400,6 @@ def holdout_validation(clf, x_train_original, y_train_original, isThreshold=Fals
     return scores
 
 
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-----not relevant---XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-# def cross_validation(clf, x_train_original, y_train_original):
-#     train_result = pd.DataFrame()
-#     valid_result = pd.DataFrame()
-#
-#     for train_idx, val_idx in KF.split(x_train_original, y_train_original):
-#         print("Fold")
-#         x_train = x_train_original.iloc[train_idx]
-#         y_train = y_train_original.iloc[train_idx]
-#         x_val = x_train_original.iloc[val_idx]
-#         y_val = y_train_original.iloc[val_idx]
-#
-#         clf.fit(x_train, y_train)
-#         acc_train = accuracy_score(y_train, clf.predict(x_train))
-#         recall_train = recall_score(y_train, clf.predict(x_train))
-#         precision_train = precision_score(y_train, clf.predict(x_train))
-#         f1_train = f1_score(y_train, clf.predict(x_train))
-#
-#         acc_val = accuracy_score(y_val, clf.predict(x_val))
-#         recall_val = recall_score(y_val, clf.predict(x_val))
-#         precision_val = precision_score(y_val, clf.predict(x_val))
-#         f1_val = f1_score(y_val, clf.predict(x_val))
-#
-#         print(f"Train Accuracy: {acc_train:.3f}")
-#         print(f"Train Recall: {recall_train:.3f}")
-#         print(f"Train Precision: {precision_train:.3f}")
-#         print(f"Train F1: {f1_train:.3f}")
-#
-#         print(f"Validation Accuracy: {acc_val:.3f}")
-#         print(f"Validation Recall: {recall_val:.3f}")
-#         print(f"Validation Precision: {precision_val:.3f}")
-#         print(f"Validation F1: {f1_val:.3f}")
-#
-#         print(confusion_matrix(y_true=y_val, y_pred=clf.predict(x_val)))
-#
-#         train_result = train_result.append({'train_acc': acc_train, 'train_recall': recall_train,
-#                                             'train_precision': precision_train}, ignore_index=True)
-#         valid_result = valid_result.append({'val_acc': acc_val, 'val_recall': recall_val,
-#                                             'val_precision': precision_val}, ignore_index=True)
-#
-#     print(train_result)
-#     print(valid_result)
-#     avg_acc_train = train_result.mean()
-#     avg_acc_val = valid_result.mean()
-#     print(avg_acc_train)
-#     print(avg_acc_val)
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-----not relevant---XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
 def print_tuning_results(results):
     """
     This function prints the results of the tuning. The results are printed for each of the measures we test.
@@ -481,42 +420,6 @@ def print_tuning_results(results):
     rows = len(results)
     print("the number of iterations is: " + str(rows))
 
-
-# xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-----not relevant---xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# def hyper_params_tuning(grid_search):
-#     """
-#     This function
-#     :param grid_search:
-#     :return: void
-#     """
-#
-#     grid_results = pd.DataFrame(grid_search.cv_results_)
-#     print("scorer: ", grid_search.scorer_)
-#     print("best score: ", grid_search.best_score_)
-#     print("best estimator: ", grid_search.best_estimator_)
-#     print('The best parameters are:', grid_search.best_params_)
-#     print("best estimator: ", grid_search.best_estimator_)
-#
-#     print("mean_test_f1", grid_results['mean_test_f1'])
-#     print("mean_test_acc", grid_results['mean_test_accuracy'])
-#     print("mean_test_prec", grid_results['mean_test_precision'])
-#     print("mean_test_recall", grid_results['mean_test_recall'])
-#
-#     y_val = grid_results['mean_test_score']
-#     y_train = grid_results['mean_train_score']
-#     results_grid_search1 = pd.DataFrame(grid_results).sort_values('rank_test_score')[['params', 'mean_test_score']]
-#     results_grid_search2 = pd.DataFrame(grid_results).sort_values('mean_train_score', ascending=False)[
-#         ['params', 'mean_train_score']]
-#     headers_val = ["Number", "Parameters", "Validation score"]
-#     headers_train = ["Number", "Parameters", "Train score"]
-#     print(tabulate(results_grid_search1, headers=headers_val, tablefmt="grid"))
-#     print(tabulate(results_grid_search2, headers=headers_train, tablefmt="grid"))
-#     plt.plot(y_val)
-#     plt.ylabel('Validation accuracy', fontsize=10)
-#     plt.xlabel('Iteration', fontsize=10)
-#     plt.title('Accuracy for each Iteration', fontsize=20)
-#     plt.show()
-# xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-----not relevant---xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 ####################################################
